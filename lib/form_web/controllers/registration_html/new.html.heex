@@ -1,0 +1,23 @@
+<h1>Create an Account</h1>
+<div>
+  <.form :let={f} for={@changeset} action={~p"/registrations"} method="post">
+    <div>
+      <label>Name</label>
+      <.input field={f[:name]} type="text" />
+    </div>
+
+    <div>
+      <label>Email</label>
+      <.input field={f[:email]} type="text" />
+    </div>
+
+    <div>
+      <label>Password</label>
+      <.input field={f[:password_hash]} type="password" />
+    </div>
+
+    <div>
+      <button type="submit">Register</button>
+    </div>
+  </.form>
+</div>
