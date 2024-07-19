@@ -20,6 +20,7 @@ defmodule FormWeb.Router do
     get "/", PageController, :home
     get "/registrations/new", RegistrationController, :new
     post "/registrations", RegistrationController, :create
+    get "/users", RegistrationController, :show
 
   end
 

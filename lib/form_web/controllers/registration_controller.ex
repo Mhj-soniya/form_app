@@ -20,4 +20,18 @@ defmodule FormWeb.RegistrationController do
     end
   end
 
+  def show(conn, _params) do
+    users = Accounts.list_users()
+    render(conn, :show, users: users)
+  end
+
+  def delete(conn, %{"id" => id}) do
+    user = Accounts.get_user!(id)
+    {:ok, _user} = Accounts.delete_user(user)
+
+    conn
+    |> put_flash(:info, "User deleted successfully.")
+    |> redirect(to: "/users")
+  end
+
 end

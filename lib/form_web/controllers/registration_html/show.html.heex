@@ -1,0 +1,31 @@
+<h1>Listing Users</h1>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%= for user <- @users do %>
+                <tr>
+                    <td><%= user.name %></td>
+                    <td><%= user.email %></td>
+                    <td>
+                        <.link
+                        href={~s"/users/#{user.id}"}
+                        phx-click="delete"
+                        phx-value-id={user.id}
+                        class="btn btn-danger"
+                        data-confirm="Are you sure you want to delete this user?"
+                        >
+                        Delete
+                        </.link>
+                    </td>                
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
