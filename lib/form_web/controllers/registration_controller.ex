@@ -48,7 +48,7 @@ defmodule FormWeb.RegistrationController do
         false ->
           conn
           |> put_flash(:info, "Password doesn't match!")
-          |> edit(id)
+          |> render(:edit, changeset: User.changeset_password(user, %{}), user: user)
       end
 
       # Update password
