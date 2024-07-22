@@ -14,7 +14,7 @@ defmodule FormWeb.RegistrationController do
       {:ok, _user} ->
         conn
         |> put_flash(:info, "User created successfully.")
-        |> redirect(to: "/")
+        |> redirect(to: "/users")
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, :new, changeset: changeset)
     end
