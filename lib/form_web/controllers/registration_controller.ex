@@ -34,4 +34,32 @@ defmodule FormWeb.RegistrationController do
     |> redirect(to: "/users")
   end
 
+  def edit(conn, %{"id" => id}) do
+    user = Accounts.get_user!(id)
+    changeset = User.changeset_password(user, %{})
+    render(conn, :edit, changeset: changeset, user: user)
+  end
+
+  def update(conn, %{"id" => id, "user" => user_params}) do
+      user = Accounts.get_user!(id)
+
+      user_param = case user_params["password"] == user_params["confirm_password"] do
+        true -> %{"password_hash" => user_params["password"]}
+        false ->
+          conn
+          |> put_flash(:info, "Password doesn't match!")
+          |> edit(id)
+      end
+
+      # Update password
+      case Accounts.update_user(user, user_param) do
+        {:ok, _user} ->
+          conn
+          |> put_flash(:info, "Password changed successfully.")
+          |> redirect(to: "/users")
+        {:error, %Ecto.Changeset{} = changeset} ->
+          render(conn, :edit, changeset: changeset, user: user)
+      end
+  end
+
 end

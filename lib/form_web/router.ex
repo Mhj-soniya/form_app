@@ -21,6 +21,9 @@ defmodule FormWeb.Router do
     get "/registrations/new", RegistrationController, :new
     post "/registrations", RegistrationController, :create
     get "/users", RegistrationController, :show
+    delete "/users/:id", RegistrationController, :delete
+    get "/users/:id/edit_password", RegistrationController, :edit
+    put "/users/:id/change_password", RegistrationController, :update
 
   end
 

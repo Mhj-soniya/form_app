@@ -6,6 +6,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Action</th>
+                <th>Update</th>
             </tr>
         </thead>
         <tbody>
@@ -23,7 +24,15 @@
                         >
                         Delete
                         </.link>
-                    </td>                
+                    </td>
+                    <td>
+                        <.link
+                        href={~s"/users/#{user.id}/edit_password"}
+                        class="btn btn-danger"
+                        >
+                        Change Password
+                        </.link>
+                    </td>                 
                 </tr>
             <% end %>
         </tbody>
